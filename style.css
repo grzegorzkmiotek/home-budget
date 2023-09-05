@@ -1,0 +1,69 @@
+main {
+	text-align: center;
+}
+span {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.input_long {
+	width: 160px;
+}
+.input_short {
+	width: 70px;
+}
+h1 {
+	font-weight: normal;
+	font-size: 24px;
+	border: 1px solid black;
+	max-width: 400px;
+	margin: auto;
+	margin-bottom: 1%;
+	padding: 1%;
+}
+
+.frame {
+	width: 330px;
+	height: 30rem;
+	border: 1px solid black;
+	padding: 2%;
+}
+p {
+	margin-left: 1px;
+}
+input {
+	margin-right: 6px;
+}
+.input_right {
+	margin-right: 10px;
+}
+li {
+	margin-left: -20px;
+	margin-block-end: 14px;
+}
+button.float {
+	float: right;
+	margin-right: 10px;
+}
+.space {
+	margin-top: 220px;
+}
+output {
+	font-weight: bold;
+}
+.error {
+	margin-bottom: 2rem;
+	color: red;
+	font-size: 0.6rem;
+}
+.hide {
+	visibility: hidden;
+}
+div.frame {
+	position: relative;
+}
+a.float-bottom {
+	position: absolute;
+	bottom: 10px;
+}
