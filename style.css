@@ -1,10 +1,15 @@
 main {
 	text-align: center;
 }
-span {
+.logo {
+	margin: 0 auto;
+	display: block;
+}
+
+.main-container {
 	display: flex;
-	justify-content: center;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .input_long {
@@ -14,10 +19,26 @@ span {
 	width: 70px;
 }
 h1 {
+	display: flex;
+	justify-content: center;
 	font-weight: normal;
 	font-size: 24px;
 	border: 1px solid black;
 	max-width: 400px;
+	margin: auto;
+	margin-bottom: 1%;
+	padding: 1%;
+}
+
+p {
+	margin: 0;
+}
+
+h2 {
+	display: flex;
+	justify-content: left;
+	font-weight: bold;
+	font-size: 14px;
 	margin: auto;
 	margin-bottom: 1%;
 	padding: 1%;
@@ -29,8 +50,8 @@ h1 {
 	border: 1px solid black;
 	padding: 2%;
 }
-p {
-	margin-left: 1px;
+.form-container {
+	margin: 15px 0px 0px 2px;
 }
 input {
 	margin-right: 6px;
@@ -63,7 +84,7 @@ output {
 div.frame {
 	position: relative;
 }
-a.float-bottom {
+div.float-bottom {
 	position: absolute;
 	bottom: 10px;
 }
