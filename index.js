@@ -18,21 +18,50 @@ const renderList = (items, listId) => {
 		btnRemove.style.float = "right";
 		btnRemove.innerHTML = "Usuń";
 		item.appendChild(btnRemove);
+		btnRemove.addEventListener("click", () =>
+			removeItem(element, items, listId)
+		);
 
-		
 		const btnEdit = document.createElement("button");
 		btnEdit.style.float = "right";
 		btnEdit.style.marginRight = "10px";
 		btnEdit.innerHTML = "Edytuj";
 		item.appendChild(btnEdit);
+		btnEdit.addEventListener("click", () => editItem(element, items, listId));
 	});
 };
 
-function removeItem() {
-	
+function editItem(element, items, listId) {
+	console.log(items);
+	const editContainer = document.getElementById("edit-container");
+	editContainer.classList.remove("hidden");
+	const editName = document.getElementById("edit-name");
+	const editAmount = document.getElementById("edit-amount");
+	editName.value = element.name;
+	editAmount.value = element.amount;
+	const cancelButton = document.getElementById("cancel-btn");
+	cancelButton.addEventListener("click", () =>
+		editContainer.classList.add("hidden")
+	);
+	const editForm = document.getElementById("edit-form");
+	editForm.addEventListener("submit", (event) => {
+		event.preventDefault();
+		editContainer.classList.add("hidden");
+		const elementToEdit = items.find((item) => item.id === element.id);
+		elementToEdit.name = editName.value;
+		elementToEdit.amount = editAmount.value;
+		console.log(items);
+		renderList(items, listId);
+	});
+	renderList(items, listId);
 }
 
+function removeItem(element, items, listId) {
+	const indexToRemove = items.findIndex((item) => item === element);
+	items.splice(indexToRemove, 1);
 
+	renderList(items, listId);
+}
 document
 	.querySelector("#income-form")
 	.addEventListener("submit", function (event) {
@@ -48,16 +77,6 @@ document
 		inputText.value = "";
 		inputNum.value = "";
 	});
-
-// const sumLi = (items, listId) => {
-// 	const sumOutput = document.querySelector(listId);
-// 	list.innerHTML = "";
-// 	items.reduce((acc, number) => {
-// 		const itemOutput = document.createTextNode(element.amount);
-// 		return acc + number;
-// 	}, 0);
-// 		list.appendChild(itemNum);
-// }
 
 document
 	.querySelector("#expense-form")
@@ -75,3 +94,31 @@ document
 		inputText.value = "";
 		inputNum.value = "";
 	});
+
+// const sum = items.indexOf(items);
+// indexToEdit.splice(sum);
+
+// document.querySelector('#income-sum')
+// .addEventListener("submit", function (event) {
+// 	const outputNum = document.querySelector('#income-num');
+// 	incomes.push({
+// 		amountOfAll = outputNum.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue)
+// 	});
+// 	renderList(incomes, "#list-sum");
+// 	outputNum.value = (amountOfAll);
+// }
+
+// document.querySelector('#expense-sum')
+// .addEventListener() {
+// 	const outputText = document.querySelector('#expense-num')
+// }
+
+// const sumLi = (items, listId) => {
+// 	const sumOutput = document.querySelector(listId);
+// 	list.innerHTML = "";
+// 	items.reduce((acc, number) => {
+// 		const itemOutput = document.createTextNode(element.amount);
+// 		return acc + number;
+// 	}, 0);
+// 		list.appendChild(itemNum);
+// }
