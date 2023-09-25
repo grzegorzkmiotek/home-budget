@@ -1,6 +1,11 @@
 const incomes = [];
 const expenses = [];
 
+const editContainer = document.getElementById("edit-container");
+const editName = document.getElementById("edit-name");
+const editAmount = document.getElementById("edit-amount");
+const editForm = document.getElementById("edit-form");
+
 const renderList = (items, listId) => {
 	const list = document.querySelector(listId);
 	list.innerHTML = "";
@@ -16,6 +21,7 @@ const renderList = (items, listId) => {
 
 		const btnRemove = document.createElement("button");
 		btnRemove.style.float = "right";
+		btnRemove.style.marginRight = "35px";
 		btnRemove.innerHTML = "Usuń";
 		item.appendChild(btnRemove);
 		btnRemove.addEventListener("click", () =>
@@ -27,41 +33,45 @@ const renderList = (items, listId) => {
 		btnEdit.style.marginRight = "10px";
 		btnEdit.innerHTML = "Edytuj";
 		item.appendChild(btnEdit);
-		btnEdit.addEventListener("click", () => editItem(element, items, listId));
+		btnEdit.addEventListener("click", () => editItem(element, listId));
 	});
 };
 
-function editItem(element, items, listId) {
-	console.log(items);
-	const editContainer = document.getElementById("edit-container");
+function editItem(element, listId) {
+	const type = listId === "#list-expenses" ? "expense" : "income";
+	editForm.dataset.type = type;
+	editForm.dataset.id = element.id;
 	editContainer.classList.remove("hidden");
-	const editName = document.getElementById("edit-name");
-	const editAmount = document.getElementById("edit-amount");
 	editName.value = element.name;
 	editAmount.value = element.amount;
 	const cancelButton = document.getElementById("cancel-btn");
 	cancelButton.addEventListener("click", () =>
 		editContainer.classList.add("hidden")
 	);
-	const editForm = document.getElementById("edit-form");
-	editForm.addEventListener("submit", (event) => {
-		event.preventDefault();
-		editContainer.classList.add("hidden");
-		const elementToEdit = items.find((item) => item.id === element.id);
-		elementToEdit.name = editName.value;
-		elementToEdit.amount = editAmount.value;
-		console.log(items);
-		renderList(items, listId);
-	});
-	renderList(items, listId);
 }
+
+editForm.addEventListener("submit", (event) => {
+	event.preventDefault();
+	const id = Number(event.target.dataset.id);
+	const type = event.target.dataset.type;
+	const items = type === "expense" ? expenses : incomes;
+	const listId = type === "expense" ? "#list-expenses" : "#list-incomes";
+	editContainer.classList.add("hidden");
+	const elementToEdit = items.find((item) => item.id === id);
+	elementToEdit.name = editName.value;
+	elementToEdit.amount = Number(editAmount.value);
+	renderList(items, listId);
+	computeTotal();
+});
 
 function removeItem(element, items, listId) {
 	const indexToRemove = items.findIndex((item) => item === element);
 	items.splice(indexToRemove, 1);
 
 	renderList(items, listId);
+	computeTotal();
 }
+
 document
 	.querySelector("#income-form")
 	.addEventListener("submit", function (event) {
@@ -70,12 +80,14 @@ document
 		const inputNum = document.querySelector("#income-amount");
 		incomes.push({
 			name: inputText.value,
-			amount: inputNum.value,
+			amount: Number(inputNum.value),
 			id: Math.random(),
 		});
 		renderList(incomes, "#list-incomes");
 		inputText.value = "";
 		inputNum.value = "";
+
+		computeTotal();
 	});
 
 document
@@ -87,38 +99,35 @@ document
 
 		expenses.push({
 			name: inputText.value,
-			amount: inputNum.value,
+			amount: Number(inputNum.value),
 			id: Math.random(),
 		});
 		renderList(expenses, "#list-expenses");
 		inputText.value = "";
 		inputNum.value = "";
+
+		computeTotal();
 	});
 
-// const sum = items.indexOf(items);
-// indexToEdit.splice(sum);
+function computeTotal() {
+	const totalIncomes = incomes.reduce((acc, income) => {
+		return acc + income.amount;
+	}, 0);
+	const totalExpenses = expenses.reduce((acc, expense) => {
+		return acc + expense.amount;
+	}, 0);
+	const incomeNum = document.getElementById("income-num");
+	incomeNum.textContent = totalIncomes;
+	const expenseNum = document.getElementById("expense-num");
+	expenseNum.textContent = totalExpenses;
+	const totalValue = totalIncomes - totalExpenses;
 
-// document.querySelector('#income-sum')
-// .addEventListener("submit", function (event) {
-// 	const outputNum = document.querySelector('#income-num');
-// 	incomes.push({
-// 		amountOfAll = outputNum.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue)
-// 	});
-// 	renderList(incomes, "#list-sum");
-// 	outputNum.value = (amountOfAll);
-// }
-
-// document.querySelector('#expense-sum')
-// .addEventListener() {
-// 	const outputText = document.querySelector('#expense-num')
-// }
-
-// const sumLi = (items, listId) => {
-// 	const sumOutput = document.querySelector(listId);
-// 	list.innerHTML = "";
-// 	items.reduce((acc, number) => {
-// 		const itemOutput = document.createTextNode(element.amount);
-// 		return acc + number;
-// 	}, 0);
-// 		list.appendChild(itemNum);
-// }
+	const total = document.getElementById("total-value");
+	if (totalValue > 0) {
+		return (total.textContent = `Możesz jeszcze wydać ${totalValue} złotych`);
+	}
+	if (totalValue < 0) {
+		return (total.textContent = `Bilans jest ujemny. Jesteś na minusie ${totalValue} złotych`);
+	}
+	return (total.textContent = "Bilans wynosi 0 złotych");
+}

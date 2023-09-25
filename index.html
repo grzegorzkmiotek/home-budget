@@ -1,73 +1,101 @@
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
-	<title>Document</title>
-	<script src="index.js" id="budget-app" defer></script>
-</head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Document</title>
+		<script src="index.js" id="budget-app" defer></script>
+	</head>
 
-<body>
-	<img class="logo" src="future collars.png" alt="Logo" width="100" height="100">
-	<h1>
-		<p>Możesz jeszcze wydać<output></output>złotych</p>
-	</h1>
+	<body>
+		<img
+			class="logo"
+			src="future collars.png"
+			alt="Logo"
+			width="100"
+			height="100" />
+		<h1>
+			<p id="total-value">Bilans wynosi 0 złotych</p>
+		</h1>
 
-	<main class="main-container">
-		<div class="frame">
-			<h2>PRZYCHODY</h2>
+		<main class="main-container">
+			<div class="frame">
+				<h2>PRZYCHODY</h2>
 
-			<form id="income-form">
-				<div class="form-container"><input class="input_long" type="text" id="income-text" placeholder="Nazwa Przychodu"
-						required minlength="3"><input class="input_short input_right" type="number" id="income-amount"
-						placeholder="Kwota" required min="0.01" step="0.01"><button id="add-income">Dodaj</button></div>
-			</form>
-			<hr>
-			
-			<ul id="list-incomes"></ul>
-			<div id="income-sum" class="float-bottom">Suma przychodów: <output id="income-num" name="result"></output></div>
-		</div>
+				<form id="income-form">
+					<div class="form-container">
+						<input
+							class="input_long"
+							type="text"
+							id="income-text"
+							placeholder="Nazwa Przychodu"
+							required
+							minlength="3" />
+						<input
+							class="input_short input_right"
+							type="number"
+							id="income-amount"
+							placeholder="Kwota"
+							required
+							min="0.01"
+							step="0.01" />
+						<button id="add-income">Dodaj</button>
+					</div>
+				</form>
+				<hr />
 
-		<div class="frame">
-			<h2>WYDATKI</h2>
+				<ul id="list-incomes"></ul>
+				<div id="income-sum" class="float-bottom">
+					Suma przychodów: <output id="income-num" name="result"></output>
+				</div>
+			</div>
 
-			<form id="expense-form">
-				<div class="form-container"><input class="input_long" type="text" id="expense-text" placeholder="Nazwa Wydatku"
-						required minlength="3"><input class="input_short input_right" type="number" id="expense-amount"
-						placeholder="Kwota" required min="0.01" step="0.01"><button id="add-expenses">Dodaj</button></div>
-			</form>
-			<hr>
+			<div class="frame">
+				<h2>WYDATKI</h2>
 
-			<ul id="list-expenses"></ul>
-			<div id="expense-sum" class="float-bottom">Suma wydatków: <output id="expense-num" name="result"></output></div>
-		</div>
+				<form id="expense-form">
+					<div class="form-container">
+						<input
+							class="input_long"
+							type="text"
+							id="expense-text"
+							placeholder="Nazwa Wydatku"
+							required
+							minlength="3" />
+						<input
+							class="input_short input_right"
+							type="number"
+							id="expense-amount"
+							placeholder="Kwota"
+							required
+							min="0.01"
+							step="0.01" />
+						<button id="add-expenses">Dodaj</button>
+					</div>
+				</form>
+				<hr />
 
+				<ul id="list-expenses"></ul>
+				<div id="expense-sum" class="float-bottom">
+					Suma wydatków: <output id="expense-num" name="result"></output>
+				</div>
+			</div>
 
-		<div id="edit-container" class="edit-container hidden">
-      <form id="edit-form" class="edit-form" autocomplete="off">
-        <input
-          type="text"
-          required
-          id="edit-name"
-          placeholder="Nazwa"
-        />
-        <input
-          type="number"
-          required
-          min="0.01"
-          step="0.01"
-          id="edit-amount"
-          placeholder="Kwota"
-        />
-        <button id="cancel-btn" type="reset">
-          Anuluj
-        </button>
-        <button id="save-btn">Zapisz</button>
-      </form>
-    </div>
-
-		
-	</main>
-</body>
+			<div id="edit-container" class="edit-container hidden">
+				<form id="edit-form" class="edit-form" autocomplete="off">
+					<input type="text" required id="edit-name" placeholder="Nazwa" />
+					<input
+						type="number"
+						required
+						min="0.01"
+						step="0.01"
+						id="edit-amount"
+						placeholder="Kwota" />
+					<button id="cancel-btn" type="reset">Anuluj</button>
+					<button id="save-btn">Zapisz</button>
+				</form>
+			</div>
+		</main>
+	</body>
 </html>
