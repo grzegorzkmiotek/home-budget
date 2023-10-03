@@ -3,6 +3,12 @@
 	display: block;
 }
 
+@media only screen and (max-width: 1700px) {
+	body {
+		width: 50%;
+	}
+}
+
 .main-container {
 	display: flex;
 	flex-wrap: wrap;
@@ -50,6 +56,7 @@ h2 {
 	padding: 2%;
 }
 .form-container {
+	display: flex;
 	margin: 5% 3%;
 }
 input {
