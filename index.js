@@ -12,10 +12,7 @@ const renderList = (items, listId) => {
 	list.classList.remove("removeLi");
 	items.forEach((element) => {
 		const item = document.createElement("li");
-		item.style.listStyleType = "none";
-		// item.style.innerHTML = ":before {content: counters(item, ".") ". ";}";
-		// item.style.innerHTML = ":before {counter-increment: item}";
-		// item.style.marginBlockEnd= "14px";
+		item.classList.add("item");
 		const itemText = document.createTextNode(element.name + " - ");
 		const itemNum = document.createTextNode(element.amount);
 

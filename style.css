@@ -111,6 +111,14 @@ li:before {
 	counter-increment: item;
 }
 
+.item {
+	list-style-type: none;
+}
+.item:before {
+	content: counters(item, ".") ". ";
+	counter-increment: item;
+}
+
 @media only screen and (max-width: 1700px) {
 	.body {
 		width: 50%;
