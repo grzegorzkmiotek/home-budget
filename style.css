@@ -1,28 +1,25 @@
+.body {
+	margin: 0 auto;
+}
 .logo {
 	margin: 0 auto;
 	display: block;
+	width: 100px;
+	height: 100px;
 }
-
-@media only screen and (max-width: 1700px) {
-	body {
-		width: 50%;
-	}
-}
-
 .main-container {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 }
-
 .input_long {
 	width: 160px;
+	margin-right: 6px;
 }
 .input_short {
 	width: 70px;
 }
-
-h1 {
+.balance {
 	display: flex;
 	justify-content: center;
 	font-weight: normal;
@@ -33,13 +30,11 @@ h1 {
 	margin-bottom: 1%;
 	padding: 1%;
 }
-
-p {
+.balance-text {
 	margin: 0;
 	font-size: 20px;
 }
-
-h2 {
+.title {
 	display: flex;
 	justify-content: left;
 	font-weight: bold;
@@ -48,7 +43,6 @@ h2 {
 	margin-bottom: 1%;
 	padding: 1%;
 }
-
 .frame {
 	width: 330px;
 	height: 30rem;
@@ -59,19 +53,10 @@ h2 {
 	display: flex;
 	margin: 5% 3%;
 }
-input {
-	margin-right: 6px;
-}
 .input_right {
 	margin-right: 10px;
 }
-li {
-	list-style-type: none;
-	margin-left: -10px;
-	margin-block-end: 14px;
-}
-
-output {
+.output {
 	font-weight: bold;
 	background-color: #f6f2f7;
 	padding: 4px 35px 3px 35px;
@@ -86,14 +71,13 @@ output {
 .hide {
 	visibility: hidden;
 }
-div.frame {
+.frame {
 	position: relative;
 }
-div.float-bottom {
+.float-bottom {
 	position: absolute;
 	bottom: 10px;
 }
-
 /* wyskakujące okienko edycji */
 .edit-container {
 	display: flex;
@@ -108,20 +92,18 @@ div.float-bottom {
 	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.7);
 }
-
 .edit-form {
 	border: 3px solid black;
 	border-radius: 5px;
 	background-color: white;
 	padding: 50px;
 }
-
 .hidden {
 	display: none;
 }
 
 /* numeracja */
-ul {
+.list {
 	counter-reset: item;
 }
 li:before {
@@ -129,4 +111,8 @@ li:before {
 	counter-increment: item;
 }
 
-/* ograniczenie ilości liczb i w outputach */
+@media only screen and (max-width: 1700px) {
+	.body {
+		width: 50%;
+	}
+}

@@ -12,6 +12,10 @@ const renderList = (items, listId) => {
 	list.classList.remove("removeLi");
 	items.forEach((element) => {
 		const item = document.createElement("li");
+		item.style.listStyleType = "none";
+		// item.style.innerHTML = ":before {content: counters(item, ".") ". ";}";
+		// item.style.innerHTML = ":before {counter-increment: item}";
+		// item.style.marginBlockEnd= "14px";
 		const itemText = document.createTextNode(element.name + " - ");
 		const itemNum = document.createTextNode(element.amount);
 
@@ -124,10 +128,14 @@ function computeTotal() {
 
 	const total = document.getElementById("total-value");
 	if (totalValue > 0) {
-		return (total.textContent = `Możesz jeszcze wydać ${totalValue} złotych`);
+		return (total.textContent = `Możesz jeszcze wydać ${totalValue.toFixed(
+			2
+		)} złotych`);
 	}
 	if (totalValue < 0) {
-		return (total.textContent = `Bilans jest ujemny. Jesteś na minusie ${totalValue} złotych`);
+		return (total.textContent = `Bilans jest ujemny. Jesteś na minusie ${Math.abs(
+			totalValue
+		).toFixed(2)} złotych`);
 	}
 	return (total.textContent = "Bilans wynosi 0 złotych");
 }

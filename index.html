@@ -8,20 +8,15 @@
 		<script src="index.js" id="budget-app" defer></script>
 	</head>
 
-	<body>
-		<img
-			class="logo"
-			src="future collars.png"
-			alt="Logo"
-			width="100"
-			height="100" />
-		<h1>
-			<p id="total-value">Bilans wynosi 0 złotych</p>
+	<body class="body">
+		<img class="logo" src="future collars.png" alt="Logo" />
+		<h1 class="balance">
+			<p id="total-value" class="balance-text">Bilans wynosi 0 złotych</p>
 		</h1>
 
 		<main class="main-container">
 			<div class="frame">
-				<h2>PRZYCHODY</h2>
+				<h2 class="title">PRZYCHODY</h2>
 
 				<form id="income-form">
 					<div class="form-container">
@@ -45,14 +40,15 @@
 				</form>
 				<hr />
 
-				<ul id="list-incomes"></ul>
+				<ul id="list-incomes" class="list"></ul>
 				<div id="income-sum" class="float-bottom">
-					Suma przychodów: <output id="income-num" name="result"></output>
+					Suma przychodów:
+					<output id="income-num" class="output" name="result"></output>
 				</div>
 			</div>
 
 			<div class="frame">
-				<h2>WYDATKI</h2>
+				<h2 class="title">WYDATKI</h2>
 
 				<form id="expense-form">
 					<div class="form-container">
@@ -76,9 +72,10 @@
 				</form>
 				<hr />
 
-				<ul id="list-expenses"></ul>
+				<ul id="list-expenses" class="list"></ul>
 				<div id="expense-sum" class="float-bottom">
-					Suma wydatków: <output id="expense-num" name="result"></output>
+					Suma wydatków:
+					<output id="expense-num" class="output" name="result"></output>
 				</div>
 			</div>
 
