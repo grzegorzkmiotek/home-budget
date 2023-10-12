@@ -14,7 +14,7 @@ const renderList = (items, listId) => {
 		const item = document.createElement("li");
 		item.classList.add("item");
 		const itemText = document.createTextNode(element.name + " - ");
-		const itemNum = document.createTextNode(element.amount);
+		const itemNum = document.createTextNode(element.amount.toFixed(2));
 
 		item.appendChild(itemText);
 		item.appendChild(itemNum);
@@ -60,7 +60,7 @@ editForm.addEventListener("submit", (event) => {
 	editContainer.classList.add("hidden");
 	const elementToEdit = items.find((item) => item.id === id);
 	elementToEdit.name = editName.value;
-	elementToEdit.amount = Number(editAmount.value);
+	elementToEdit.amount = Number(Number(editAmount.value).toFixed(2));
 	renderList(items, listId);
 	computeTotal();
 });
@@ -77,11 +77,11 @@ document
 	.querySelector("#income-form")
 	.addEventListener("submit", function (event) {
 		event.preventDefault();
-		const inputText = document.querySelector("#income-text");
-		const inputNum = document.querySelector("#income-amount");
+		const inputText = event.target.incomeText;
+		const inputNum = event.target.incomeAmount;
 		incomes.push({
 			name: inputText.value,
-			amount: Number(inputNum.value),
+			amount: Number(Number(inputNum.value).toFixed(2)),
 			id: Math.random(),
 		});
 		renderList(incomes, "#list-incomes");
@@ -95,12 +95,12 @@ document
 	.querySelector("#expense-form")
 	.addEventListener("submit", function (event) {
 		event.preventDefault();
-		const inputText = document.querySelector("#expense-text");
-		const inputNum = document.querySelector("#expense-amount");
+		const inputText = event.target.expenseText;
+		const inputNum = event.target.expenseAmount;
 
 		expenses.push({
 			name: inputText.value,
-			amount: Number(inputNum.value),
+			amount: Number(Number(inputNum.value).toFixed(2)),
 			id: Math.random(),
 		});
 		renderList(expenses, "#list-expenses");
@@ -118,9 +118,9 @@ function computeTotal() {
 		return acc + expense.amount;
 	}, 0);
 	const incomeNum = document.getElementById("income-num");
-	incomeNum.textContent = totalIncomes;
+	incomeNum.textContent = totalIncomes.toFixed(2);
 	const expenseNum = document.getElementById("expense-num");
-	expenseNum.textContent = totalExpenses;
+	expenseNum.textContent = totalExpenses.toFixed(2);
 	const totalValue = totalIncomes - totalExpenses;
 
 	const total = document.getElementById("total-value");
